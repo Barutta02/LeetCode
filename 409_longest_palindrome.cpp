@@ -15,7 +15,6 @@ public:
         int res = 0;
         for (char ch : s) { 
                 letter_count[((int) ch) - 65]++;
-
             }
         for(int i = 0;i<100;i++){
             if(letter_count[i] > 0){
@@ -32,3 +31,36 @@ public:
         }
     
 };
+
+
+
+
+/*
+Alternativa migliore in spazio
+
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        int numero_dispari = 0;
+        int letter_count[100] = {};
+        int res = 0;
+        for (char ch : s) { 
+            int index = ((int) ch) - 65;
+            res -=   ( letter_count[index] / 2 >= 1? letter_count[index]:0 );
+            letter_count[index]++;
+            res+=  ( letter_count[index] / 2 >= 1? letter_count[index]:0 ) ;
+            if(letter_count[index]%2 == 0){
+                if(letter_count[index] >1){
+                    numero_dispari-=1;
+                }
+            }else {
+                    numero_dispari+=1;
+            }
+            }
+            
+            return res + (numero_dispari>0?1:0);
+
+        }
+    
+};
+*/
