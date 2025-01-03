@@ -1,0 +1,31 @@
+class Solution {
+    public String reverseWords(String s) {
+        int pivot = -1;
+        int pointer = -1;
+        int initLength = s.length();
+        String result = "";
+
+        while (pivot < initLength && pointer < s.length()) {
+            pivot++;
+            pointer++;
+            int length = s.length();
+            if (pointer == length || s.charAt(pointer) == ' ') {
+                if(pointer > 0){
+                    String newWord =  s.substring(0, pointer);
+                    newWord = " " + newWord;
+                    if(pointer != length){
+                        s = s.substring(pointer+1, length);
+                    }
+                    result = newWord + result;
+                    
+                }else{
+                    if(pointer < length)
+                        s = s.substring(1, length);
+                }
+                pointer = -1;
+            }
+        }
+        
+        return (result.charAt(0) == ' ') ? result.substring(1,result.length()) : result; 
+    }
+}
