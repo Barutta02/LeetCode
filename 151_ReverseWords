@@ -1,3 +1,29 @@
+//CLEANER
+class Solution {
+    public String reverseWords(String s) {
+        int lastSpacePivot = -1;
+        int cursor = 0 ;
+        int length = s.length();
+        String result = "";
+
+        while (cursor <= length) {
+            if ( cursor == length || s.charAt(cursor) == ' ' ) {
+                if(cursor != lastSpacePivot +1){
+                    result = 
+                        " " 
+                        + s.substring(lastSpacePivot + 1 ,cursor) 
+                        + result;
+                }
+                lastSpacePivot = cursor;
+            }
+            cursor++;
+        }
+        
+        return result.substring(1 , result.length()) ; 
+    }
+}
+
+//DUMMY
 class Solution {
     public String reverseWords(String s) {
         int pivot = -1;
