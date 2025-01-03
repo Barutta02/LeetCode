@@ -1,0 +1,49 @@
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+          int n = nums.length;
+        int[] res = new int[n];
+        int zeroCounter = 0;
+        int tot = 1;
+        for(int i = 0; i < n; i++){
+            if(nums[i] != 0 ){
+                tot = nums[i]*tot;
+            }else{
+                zeroCounter++;
+            }
+        }
+
+        for(int i = 0; i < n; i++){
+            if(zeroCounter > 1 || (zeroCounter >= 1 && nums[i] != 0 )){
+                res[i] = 0;
+            }else{
+                res[i] = tot / (nums[i] == 0 ? 1 : nums[i]);
+
+            }
+        }
+    return res;
+    }
+    
+}
+
+//OTHER SOL
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int n = nums.length;
+        int[] res = new int[n];
+
+        // Passo 1: Calcoliamo il prodotto dei numeri a sinistra di ogni elemento
+        res[0] = 1;
+        for (int i = 1; i < n; i++) {
+            res[i] = res[i - 1] * nums[i - 1];
+        }
+
+        // Passo 2: Calcoliamo il prodotto dei numeri a destra e aggiorniamo il risultato
+        int rightProduct = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            res[i] = res[i] * rightProduct;
+            rightProduct *= nums[i];
+        }
+
+        return res;
+    }
+}
